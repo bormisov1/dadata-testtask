@@ -1,0 +1,41 @@
+version: '3.5'
+
+services:
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    environment:
+      - API_KEY=api-key-here
+      - DB_HOST=postgres
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    environment:
+      - BACKEND_HOST=localhost:3000
+    ports:
+      - '80:8080'
+    volumes:
+      - ../frontend/public:/usr/app/public
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:15-alpine
+    volumes:
+      - postgres-db:/data/postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: admin
+      PGDATA: /data/postgres
+
+volumes:
+  postgres-db:
