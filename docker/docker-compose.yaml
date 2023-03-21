@@ -17,8 +17,6 @@ services:
     build:
       context: ../frontend
       dockerfile: Dockerfile
-    environment:
-      - BACKEND_HOST=95.163.241.185:3000
     ports:
       - '80:8080'
     volumes:
