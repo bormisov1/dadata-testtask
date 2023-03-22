@@ -22,6 +22,7 @@ export class PartyService {
       body: JSON.stringify({ query: itn }),
     };
     const response = await (await fetch(url, options)).json();
+    if (response.reason === 'Forbidden') throw Error('token_rejected');
     const parties = response['suggestions'];
     if (!parties || !parties.length) throw Error('no_such_party');
     const partyName = parties[0]['value'];
