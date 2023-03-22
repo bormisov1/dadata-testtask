@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-const backendUrl = process.env.BACKEND_HOST || 'http://localhost:3000'
+const backendUrl = `http://${process.env.VUE_APP_BACKEND_HOST || 'localhost'}:3000`
 export const store = new Vuex.Store({
   state: {
     search: getLSItemSafe('search', ''),

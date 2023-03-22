@@ -19,8 +19,6 @@ services:
     build:
       context: ../frontend
       dockerfile: Dockerfile-dev
-    environment:
-      - BACKEND_HOST=localhost:3000
     ports:
       - '8080:8080'
     volumes:
