@@ -7,7 +7,5 @@ COPY package*.json tsconfig.json ./
 COPY src src
 
 RUN npm install
-# RUN npm i -g ts-node \
 
 CMD [ "npm", "run", "start" ]
-#CMD [ "ls"  ]
